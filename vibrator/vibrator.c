@@ -21,11 +21,22 @@
 #include <fcntl.h>
 #include <errno.h>
 
+
+#ifdef USE_ALTERNATIVE_VIBRATOR
+extern int sendit(int timeout_ms);
+#else
+
 #define THE_DEVICE "/sys/class/timed_output/vibrator/enable"
 
 int vibrator_exists()
 {
     int fd;
+
+#ifdef QEMU_HARDWARE
+    if (qemu_check()) {
+        return 1;
+    }
+#endif
 
     fd = open(THE_DEVICE, O_RDWR);
     if(fd < 0)
@@ -39,6 +50,12 @@ static int sendit(int timeout_ms)
     int nwr, ret, fd;
     char value[20];
 
+#ifdef QEMU_HARDWARE
+    if (qemu_check()) {
+        return qemu_control_command( "vibrator:%d", timeout_ms );
+    }
+#endif
+
     fd = open(THE_DEVICE, O_RDWR);
     if(fd < 0)
         return errno;
@@ -51,17 +68,15 @@ static int sendit(int timeout_ms)
     return (ret == nwr) ? 0 : -1;
 }
 
+#endif
 
 int vibrator_on(int timeout_ms)
 {
     /* constant on, up to maximum allowed time */
-    if(timeout_ms < 0)
-		return sendit(10000);
-	return sendit(timeout_ms);
+    return sendit(timeout_ms);
 }
 
 int vibrator_off()
-{	
-	/* checks if the device is vibrating, if it's vibrating stop, if not, do nothing */
-	return (vibrator_exists() == 0) ? 0 : 1;
+{
+    return sendit(0);
 }
