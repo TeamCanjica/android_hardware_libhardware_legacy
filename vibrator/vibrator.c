@@ -23,7 +23,9 @@
 
 
 #ifdef USE_ALTERNATIVE_VIBRATOR
+#ifndef STE_HARDWARE
 extern int sendit(int timeout_ms);
+#endif
 #else
 
 #define THE_DEVICE "/sys/class/timed_output/vibrator/enable"
