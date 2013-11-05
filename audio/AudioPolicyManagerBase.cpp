@@ -871,7 +871,7 @@ audio_io_handle_t AudioPolicyManagerBase::getInput(int inputSource,
                                     uint32_t samplingRate,
                                     uint32_t format,
                                     uint32_t channelMask,
-#ifdef STE_SAMSUNG_HARDWARE
+#ifdef STE_AUDIO
                                     AudioSystem::audio_in_acoustics acoustics,
                                     audio_input_clients *inputClientId)
 #else
@@ -932,7 +932,7 @@ audio_io_handle_t AudioPolicyManagerBase::getInput(int inputSource,
                                     &inputDesc->mDevice,
                                     &inputDesc->mSamplingRate,
                                     &inputDesc->mFormat,
-#ifdef STE_SAMSUNG_HARDWARE
+#ifdef STE_AUDIO
                                     &inputDesc->mChannelMask,
                                     inputClientId);
 #else

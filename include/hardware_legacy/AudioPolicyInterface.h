@@ -110,7 +110,7 @@ public:
                                     uint32_t samplingRate = 0,
                                     uint32_t Format = AudioSystem::FORMAT_DEFAULT,
                                     uint32_t channels = 0,
-#ifdef STE_SAMSUNG_HARDWARE
+#ifdef STE_AUDIO
                                     AudioSystem::audio_in_acoustics acoustics = (AudioSystem::audio_in_acoustics)0,
                                     audio_input_clients *inputClientId = NULL) = 0;
 #else
@@ -219,7 +219,7 @@ public:
                                         audio_devices_t *pDevices,
                                         uint32_t *pSamplingRate,
                                         audio_format_t *pFormat,
-#ifdef STE_SAMSUNG_HARDWARE
+#ifdef STE_AUDIO
                                         audio_channel_mask_t *pChannelMask,
                                         audio_input_clients *pInputClientId = NULL) = 0;
     // closes an audio input

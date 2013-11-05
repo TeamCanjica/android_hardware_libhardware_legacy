@@ -120,7 +120,7 @@ public:
                                             uint32_t samplingRate,
                                             uint32_t format,
                                             uint32_t channels,
-#ifdef STE_SAMSUNG_HARDWARE
+#ifdef STE_AUDIO
                                             AudioSystem::audio_in_acoustics acoustics,
                                             audio_input_clients *inputClientId = NULL);
 #else
