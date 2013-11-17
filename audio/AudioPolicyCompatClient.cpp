@@ -76,7 +76,7 @@ audio_io_handle_t AudioPolicyCompatClient::openInput(audio_module_handle_t modul
                                                      audio_devices_t *pDevices,
                                                      uint32_t *pSamplingRate,
                                                      audio_format_t *pFormat,
-#ifdef STE_AUDIO
+#ifdef STE_SAMSUNG_HARDWARE
                                                      audio_channel_mask_t *pChannelMask,
                                                      audio_input_clients *pInputClientId)
 {

@@ -377,7 +377,7 @@ public:
         NUM_FORCE_USE
     };
 
-#ifdef STE_AUDIO
+#ifdef STE_SAMSUNG_HARDWARE
 // AUDIO_INPUT_CLIENT_ID_BASE provide a means to refer to client Id´s not explicitly defined in the enum audio_input_clients
 #define AUDIO_INPUT_CLIENT_ID_BASE AUDIO_INPUT_CLIENT_ID1
 
