@@ -19,7 +19,6 @@
 //#define LOG_NDEBUG 0
 
 #include <stdint.h>
-#include <string.h>
 
 #include <hardware/hardware.h>
 #include <system/audio.h>
@@ -27,7 +26,6 @@
 #include <hardware/audio_policy.h>
 
 #include <hardware_legacy/AudioSystemLegacy.h>
-#include <hardware_legacy/AudioPolicyInterface.h>
 
 #include "AudioPolicyCompatClient.h"
 
@@ -76,20 +74,6 @@ audio_io_handle_t AudioPolicyCompatClient::openInput(audio_module_handle_t modul
                                                      audio_devices_t *pDevices,
                                                      uint32_t *pSamplingRate,
                                                      audio_format_t *pFormat,
-#ifdef STE_SAMSUNG_HARDWARE
-                                                     audio_channel_mask_t *pChannelMask,
-                                                     audio_input_clients *pInputClientId)
-{
-    return mServiceOps->open_input_on_module(mService, module, pDevices,
-                                             pSamplingRate, pFormat, pChannelMask);
-}
-
-status_t AudioPolicyCompatClient::closeInput(audio_io_handle_t input, audio_input_clients *inputClientId)
-{
-    return mServiceOps->close_input(mService, input, inputClientId);
-}
-
-#else
                                                      audio_channel_mask_t *pChannelMask)
 {
     return mServiceOps->open_input_on_module(mService, module, pDevices,
@@ -100,7 +84,6 @@ status_t AudioPolicyCompatClient::closeInput(audio_io_handle_t input)
 {
     return mServiceOps->close_input(mService, input);
 }
-#endif
 
 status_t AudioPolicyCompatClient::setStreamOutput(AudioSystem::stream_type stream,
                                              audio_io_handle_t output)
