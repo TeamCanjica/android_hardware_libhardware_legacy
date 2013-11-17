@@ -81,11 +81,10 @@ audio_io_handle_t AudioPolicyCompatClient::openInput(audio_module_handle_t modul
                                                      audio_input_clients *pInputClientId)
 {
     return mServiceOps->open_input_on_module(mService, module, pDevices,
-                                             pSamplingRate, pFormat, pChannelMask, pInputClientId);
+                                             pSamplingRate, pFormat, pChannelMask);
 }
 
-status_t AudioPolicyCompatClient::closeInput(audio_io_handle_t input,
-                                            audio_input_clients *inputClientId)
+status_t AudioPolicyCompatClient::closeInput(audio_io_handle_t input, audio_input_clients *inputClientId)
 {
     return mServiceOps->close_input(mService, input, inputClientId);
 }
